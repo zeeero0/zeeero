@@ -36,38 +36,50 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
       };
       fetchCompleters();
     }
-  }, [selectedCampaign]);
+{/* نافذة المنبثقة للمنجزين - Modal */}
+        {selectedCampaign && (
+          <div className="fixed inset-0 z-[110] flex items-center justify-center p-2 lg:p-8 bg-black/95 backdrop-blur-3xl animate-in fade-in duration-300">
+            <div className="w-full max-w-5xl bg-white dark:bg-[#020617] rounded-3xl lg:rounded-[2.5rem] p-4 lg:p-10 relative shadow-2xl border border-white/5 overflow-hidden flex flex-col max-h-[90vh]">
+              <div className="absolute top-0 left-0 w-full h-1.5 bg-red-600"></div>
+              
+              {/* الرأس - Header */}
+              <div className="flex justify-between items-center mb-6 shrink-0">
+                <div className="text-right">
+                  <h2 className="text-xl lg:text-3xl font-black text-slate-900 dark:text-white italic tracking-tighter">المنجزون</h2>
+                  <p className="text-slate-500 text-[10px] lg:text-sm font-bold mt-1 opacity-70">قائمة الحسابات التي أتمت المهمة بنجاح</p>
+                </div>
+                <button 
+                  onClick={() => setSelectedCampaign(null)} 
+                  className="w-10 h-10 lg:w-14 lg:h-14 flex items-center justify-center rounded-2xl bg-slate-100 dark:bg-white/5 hover:bg-red-600 hover:text-white transition-all group"
+                >
+                  <i className="fas fa-times text-xl group-hover:rotate-90 transition-transform"></i>
+                </button>
+              </div>
 
-  const handleRate = async (campaignId: string, completerId: string, rating: 'favorable' | 'negative') => {
-    setIsRating(completerId);
-    try {
-      const res = await fetch('/api/campaigns/rate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ campaignId, completerId, rating })
-      });
-      const data = await res.json();
+              {/* قائمة المنجزين */}
+              <div className="space-y-3 overflow-y-auto custom-scrollbar flex-1 pb-4 px-1">
+                {(!selectedCampaign.completers || selectedCampaign.completers.length === 0) ? (
+                  <div className="text-center py-20 opacity-20 italic font-black text-xl lg:text-2xl tracking-widest text-slate-500">
+                    لا يوجد منجزون بعد
+                  </div>
+                ) : (
+                  selectedCampaign.completers.map((completer, idx) => (
+                    <div key={idx} className="p-4 lg:p-6 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl flex justify-between items-center hover:border-red-500/30 transition-colors">
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-full bg-red-600/10 flex items-center justify-center text-red-600 font-bold">
+                          {idx + 1}
+                        </div>
+                        <span className="font-bold text-slate-700 dark:text-slate-200">{completer}</span>
+                      </div>
+                      <i className="fas fa-check-circle text-emerald-500 text-xl"></i>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+          </div>
+        )}
       
-      const all = await dbService.getCampaigns();
-      const updatedMyCampaigns = all.filter(c => c.userId === user.id);
-      setMyCampaigns(updatedMyCampaigns);
-      
-      if (selectedCampaign) {
-        const updatedCampaign = updatedMyCampaigns.find(c => c.id === campaignId);
-        if (updatedCampaign) setSelectedCampaign(updatedCampaign);
-      }
-
-      if (data.message) {
-        setRatingMessage(data.message);
-        setTimeout(() => setRatingMessage(null), 5000);
-      }
-    } catch (error) {
-      alert("فشل التقييم. يرجى التأكد من اتصال السيرفر.");
-    } finally {
-      setIsRating(null);
-    }
-  };
-
   return (
     <div className="space-y-12 animate-in fade-in slide-in-from-bottom-6 duration-700 w-full transition-all">
       {user.trustScore <= 50 && (
