@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nokhba Hub | نخبة التكافل الرقمي 🇲🇦</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+          darkMode: 'class',
+          theme: {
+            extend: {
+              colors: {
+                primary: '#e11d48',
+                jewel: '#3b82f6',
+                morocco: {
+                  red: '#e11d48',
+                  black: '#0f172a',
+                  white: '#ffffff',
+                  blue: '#3b82f6',
+                  gold: '#fbbf24',
+                  green: '#25D366'
+                }
+              },
+              animation: {
+                'fast-in': 'fastIn 0.2s ease-out forwards',
+                'shake': 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both'
+              },
+              keyframes: {
+                fastIn: {
+                  '0%': { opacity: '0', transform: 'translateY(10px) scale(0.98)' },
+                  '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+                },
+                shake: {
+                  '10%, 90%': { transform: 'translate3d(-1px, 0, 0)' },
+                  '20%, 80%': { transform: 'translate3d(2px, 0, 0)' },
+                  '30%, 50%, 70%': { transform: 'translate3d(-4px, 0, 0)' },
+                  '40%, 60%': { transform: 'translate3d(4px, 0, 0)' }
+                }
+              }
+            }
+          }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700;900&display=swap');
+        
+        html, body { 
+            width: 100%;
+            min-height: 100%;
+            overflow-x: hidden; 
+            font-family: 'Cairo', sans-serif; 
+            margin: 0; 
+            background-color: #f8fafc; /* Default light bg */
+            color: #0f172a; /* Default dark text */
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Mobile Optimization: Reduce base sizes */
+        @media (max-width: 768px) {
+            html { font-size: 14px; }
+            .p-10 { padding: 1.5rem !important; }
+            .p-8 { padding: 1.25rem !important; }
+            .p-6 { padding: 1rem !important; }
+            .rounded-\[4rem\] { border-radius: 2rem !important; }
+            .rounded-\[3\.5rem\] { border-radius: 1.75rem !important; }
+            .rounded-\[3rem\] { border-radius: 1.5rem !important; }
+            .text-5xl { font-size: 2rem !important; }
+            .text-4xl { font-size: 1.75rem !important; }
+            .text-3xl { font-size: 1.5rem !important; }
+            .text-2xl { font-size: 1.25rem !important; }
+        }
+
+        .dark body {
+            background-color: #020617;
+            color: #f8fafc;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e11d4855; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #e11d4888; }
+
+        input::placeholder { opacity: 0.6; }
+        
+        .transition-theme {
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "mysql2/": "https://esm.sh/mysql2@^3.17.2/",
+    "express": "https://esm.sh/express@^5.2.1",
+    "cors": "https://esm.sh/cors@^2.8.6",
+    "vite": "https://esm.sh/vite@^7.3.1",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.4",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.41.0",
+    "body-parser": "https://esm.sh/body-parser@^2.2.2",
+    "dotenv": "https://esm.sh/dotenv@^17.3.1",
+    "node-fetch": "https://esm.sh/node-fetch@^3.3.2",
+    "nodemailer": "https://esm.sh/nodemailer@^8.0.1"
+  }
+}
+</script>
+</head>
+<body class="antialiased">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>

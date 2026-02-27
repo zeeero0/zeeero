@@ -1,0 +1,8 @@
+{
+  "name": "Nokhba Hub",
+  "description": "منصة النخبة للتكافل الرقمي والاجتماعي - Nokhba Hub.",
+  "requestFramePermissions": [
+    "microphone",
+    "camera"
+  ]
+}
